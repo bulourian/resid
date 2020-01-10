@@ -1,0 +1,17 @@
+include head.pug
+div(class="container text-right")
+  div(class="row")
+    div(class="col")
+      div(class="mx-auto border rounded mt-5 p-5" style="width:500px")
+        form(method="POST" action="/user/login" enctype="application/x-www-form-urlencoded")
+          div(class="form-group")
+            label(for="exampleInputEmail1") نام کاربری
+            input(type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp")
+          div(class="form-group")
+            label(for="exampleInputPassword1") پسورد
+            input(type="password" name="password" class="form-control" id="exampleInputPassword1")
+          button(type="submit" class="btn btn-primary") ورود
+        div(style="width: 100%;display: inline;float: left; text-align: center; border-top: 1px solid #ccc; margin-top: 1rem;padding-top: 0.2rem;")
+          a(href="/register") ثبت نام
+          span   |  
+          a(href="/") صفحه اصلی

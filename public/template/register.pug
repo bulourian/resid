@@ -1,0 +1,26 @@
+include head.pug
+div(class="container text-right")
+  div(class="row")
+    div(class="col")
+      div(class="mx-auto border rounded mt-5 p-5" style="width:500px")
+        form(method="POST" action="/user/add" enctype="application/x-www-form-urlencoded")
+          div(class="form-group")
+            label(for="name") نام 
+            input(type="text" name="name" class="form-control" id="name" aria-describedby="name")
+          div(class="form-group")
+            label(for="name") نام خانوادگی 
+            input(type="text" name="lastname" class="form-control" id="lastname" aria-describedby="lastname")
+          div(class="form-group")
+            label(for="username") نام کاربری
+            input(type="text" name="username" class="form-control" id="username" aria-describedby="username")
+          div(class="form-group")
+            label(for="password") پسورد
+            input(type="password" name="password" class="form-control" id="passowrd")
+          div(class="form-group")
+            label(for="repassowrd") تکرار پسورد 
+            input(type="password" name="repassword" class="form-control" id="repassword")
+          button(style="display: inline;" type="submit" class="btn btn-primary") ثبت نام
+        div(style="width: 100%;display: inline;float: left; text-align: center; border-top: 1px solid #ccc; margin-top: 1rem;")
+          a(href="/login") ورود
+          span   |  
+          a(href="/") صفحه اصلی

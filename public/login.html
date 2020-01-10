@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css" crossorigin="anonymous">
+    <title>ورود</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    <div class="container text-right">
+      <div class="row">
+        <div class="col">
+          <div class="mx-auto border rounded mt-5 p-5" style="width:500px">
+            <form method="POST" action="/user/login" enctype="application/x-www-form-urlencoded">
+              <div class="form-group">
+                <label for="exampleInputEmail1">نام کاربری</label>
+                <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">پسورد</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <button type="submit" class="btn btn-outline-info">ورود</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

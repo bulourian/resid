@@ -1,0 +1,30 @@
+include head.pug
+div(class="container text-right")
+  div(class="row")
+    div(class="col")
+      div(class="mx-auto border rounded mt-5 p-5" style="width:1200px; height: 170px;")
+        form(method="POST" action="/resid" enctype="application/x-www-form-urlencoded" class="formy")
+          div(class="form-row")
+            div(class="col-1")
+              select(class="form-control" name="type")
+                option(selected) ثالث
+                option آموزش
+                option بدنه
+            div(class="col-2")
+              input(type="text" name="bid" class="form-control" placeholder="شماره بیمه")
+            div(class="col-3")
+              input(type="text" name="name" class="form-control" placeholder="نام و نام خانوادگی")
+            div(class="col-2")
+              select(class="form-control" name="reciept")
+                option(selected) قسط اول
+                option قسط دوم
+                option قسط سوم
+                option قسط چهارم
+                option قسط پنجم
+            div(class="col-2")
+              input(type="text" name="payment" class="form-control" placeholder="مبلغ قسط")
+            div(class="col-2")
+              input(style="direction: ltr !important" type="text" id="datetime" name="datetime" class="form-control" placeholder="تاریخ")
+        div(style="width: 100%;display: inline;float: left; text-align: left; border-top: 1px solid #ccc; margin-top: 1rem; padding-top: 1rem;")
+          button(class="btn btn-primary" style="margin-right:10px" type="submit" id="btn-sabt") ثبت
+script(src="lib/js/main.js" defer)
