@@ -96,7 +96,7 @@ const login = (req, res) => {
         return;
       }
 
-      resolve(rows[0][0], rows[0][5]);
+      resolve(rows[0]);
       return;
     });
   });

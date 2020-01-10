@@ -40,9 +40,7 @@ fastify.post('/resid', (req, res) => {
 });
 
 fastify.get('/resid', (req, res) => {
-  console.log(req.session.auth)
   if (!req.session.auth) {
-    console.log(req.session.auth)
     res.redirect('/login');
     return;
   }
@@ -84,11 +82,10 @@ fastify.get('/login', (req, res) => {
 });
 
 fastify.post('/user/login' , (req, res) => {
-  user.login(req, res).then( (uid, username) => {
-    console.log(uid, username)
+  user.login(req, res).then( (user) => {
     req.session.auth = true;
-    req.session.user = username;
-    req.session.uid = uid;
+    req.session.user = user[5];
+    req.session.uid = user[0];
     res.redirect('/');
   }).catch( () => {
     res.send('نام کاربری یا رمز عبور اشتباه می باشد.');
