@@ -39,7 +39,7 @@ const addBimeh = (req, res) => {
     datetime
   } = req.body;
 
-  db.query(`INSERT INTO resid VALUES (NULL, :type, :bid, :name, :payment, :reciept, :date, :uid)`, {
+  db.query(`INSERT INTO resid VALUES (NULL, :type, :bid, :name, :reciept, :payment, :date, :uid)`, {
     type,
     bid,
     name,

@@ -3,6 +3,7 @@ const fastify = require('fastify')();
 
 const user = require('./user');
 const resid = require('./resid');
+const list = require('./list');
 
 fastify.register(require('fastify-helmet'));
 fastify.register(require('fastify-cors'));
@@ -36,6 +37,11 @@ fastify.get('/', (req, res) => {
 });
 
 fastify.post('/resid', (req, res) => {
+  if (!req.session.auth) {
+    res.redirect('/login');
+    return;
+  }
+
   resid.bimeh(req, res);
 });
 
@@ -60,12 +66,15 @@ fastify.get('/list', (req, res) => {
     return;
   }
 
-  res.view('list.pug', {
-    title: 'لیست اقساط',
-    headerTitle: 'ثبت اقساط',
-    name: 'Amin',
-    user: req.session.user,
-    auth: req.session.auth
+  list.list().then( data => {
+    res.view('list.pug', {
+      title: 'لیست اقساط',
+      headerTitle: 'ثبت اقساط',
+      name: 'Amin',
+      user: req.session.user,
+      auth: req.session.auth,
+      val: data
+    });
   });
 });
 
