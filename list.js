@@ -22,4 +22,13 @@ const list = (req, res) => {
   });
 }
 
+const bdelete = (req, res) => {
+  let id = req.params.id;
+
+  db.query('DELETE FROM resid WHERE id = :id', { id });
+
+  res.redirect('/list');
+}
+
 exports.list = list;
+exports.delete = bdelete;

@@ -1,5 +1,6 @@
 const path = require('path');
 const fastify = require('fastify')();
+const octicons = require('octicons');
 
 const user = require('./user');
 const resid = require('./resid');
@@ -22,11 +23,6 @@ fastify.register(require('point-of-view'), {
   },
   templates: 'public/template',
 });
-
-// fastify.addHook('preHandler', (request, reply, next) => {
-//   const session = request.session;
-//   request.sessionStore.destroy(session.sessionId, next);
-// });
 
 fastify.get('/', (req, res) => {
   res.view('index.pug', {
@@ -76,6 +72,10 @@ fastify.get('/list', (req, res) => {
       val: data
     });
   });
+});
+
+fastify.get('/delete/:id', (req, res) => {
+  list.delete(req, res);
 });
 
 fastify.post('/user/add', { schema: user.userSchema } , (req, res) => {
