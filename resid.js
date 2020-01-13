@@ -1,10 +1,6 @@
 const crypto = require('crypto');
 const db = require('./db').db;
-
-// db.query('select * from resid', (err, rows) => {
-//   if (err) return;
-//   console.log(rows);
-// });
+const util = require('./util');
 
 const residSchema = {
   querystring: {
@@ -41,11 +37,11 @@ const addBimeh = (req, res) => {
 
   db.query(`INSERT INTO resid VALUES (NULL, :type, :bid, :name, :reciept, :payment, :date, :uid)`, {
     type,
-    bid,
+    bid: util.toEnglishDigit(bid),
     name,
-    payment,
+    payment: util.toEnglishDigit(payment),
     reciept,
-    date: datetime,
+    date: util.toEnglishDigit(datetime),
     uid: req.session.uid
   });
 

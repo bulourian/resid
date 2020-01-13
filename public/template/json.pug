@@ -11,7 +11,7 @@ div(class="container text-right")
         th(scope="col") مبلغ
         th(scope="col") تاریخ
         th(scope="col") حذف
-    tbody(id="tbody")
+    tbody
     each va, i in val
       tr(style="text-align:center")
         th(scope)= i+1
@@ -25,19 +25,4 @@ div(class="container text-right")
           a(href="/delete/" + va.id)
             svg(version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-trashcan" aria-hidden="true")
               path(fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z")
-
-script.
-  $(document).ready(() => {
-    fetch('http://sony:3000/json').then( res => {
-      return res.json();
-    }).then( res => {
-      console.log(res);
-      let el = document.querySelector('#tbody');
-      let tr = document.createElement('tr');
-      let td = document.createElement('td');
-      res.forEach( i => {
-        el.appendChild(tr.appendChild(td.appendChild(document.createTextNode(i.type))));
-      });
-    });
-  });
 

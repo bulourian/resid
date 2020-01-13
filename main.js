@@ -74,6 +74,19 @@ fastify.get('/list', (req, res) => {
   });
 });
 
+fastify.get('/json', (req, res) => {
+  if (!req.session.auth) {
+    res.redirect('/login');
+    return;
+  }
+
+  list.list().then( data => {
+    res.code(200);
+    res.header('Content-Type', 'application/json; charset=utf-8');
+    res.send(data);
+  });
+});
+
 fastify.get('/delete/:id', (req, res) => {
   list.delete(req, res);
 });
@@ -116,7 +129,7 @@ fastify.get('/logout' , (req, res) => {
   }
 });
 
-fastify.listen(3000, (err, address) => {
+fastify.listen(3000, '192.168.1.165', (err, address) => {
 	if (err) {
 		fastify.log.error(err);
 		process.exit(1);

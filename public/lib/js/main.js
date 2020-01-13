@@ -8,6 +8,10 @@ $(document).ready(function() {
   let datetime = document.querySelector('input[name=datetime]');
   let btnSabt = document.querySelector('#btn-sabt');
 
+  const toEnglishDigit = function (val) {
+    return (val + '').replace(/[\u06F0-\u06F9]/g, digit => String.fromCharCode( digit.charCodeAt(0) - 1728 ));
+  }
+
   $('#datetime').MdPersianDateTimePicker({
     targetTextSelector: '#datetime',
     enableTimePicker: true,
@@ -16,9 +20,9 @@ $(document).ready(function() {
   });
 
   payment.addEventListener('keyup', function(evt){
-    if (/\d/g.test(payment.value)) {
+    if (/(\d|[\u06F0-\u06F9])/g.test(payment.value)) {
       var n = parseInt(this.value.replace(/\D/g,''),10);
-      payment.value = new Intl.NumberFormat().format(n)//n.toLocaleString();
+      payment.value = new Intl.NumberFormat().format(n);
     }
   }, false);
 
@@ -37,6 +41,5 @@ $(document).ready(function() {
     }).catch( err => {
       console.log(err);
     });
-
   });
 });
