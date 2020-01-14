@@ -17,9 +17,9 @@
     "fastify-session": "^3.2.0",
     "fastify-static": "^2.5.1",
     "md.bootstrappersiandatetimepicker": "^3.6.3",
-    "octicons": "^8.5.0",
     "point-of-view": "^3.7.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "ws": "^7.2.1"
   },
   "pkg": {
     "assets": [

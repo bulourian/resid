@@ -1,6 +1,5 @@
 const path = require('path');
 const fastify = require('fastify')();
-const octicons = require('octicons');
 
 const user = require('./user');
 const resid = require('./resid');
@@ -129,7 +128,7 @@ fastify.get('/logout' , (req, res) => {
   }
 });
 
-fastify.listen(3000, '192.168.1.165', (err, address) => {
+fastify.listen(3000, /*'192.168.1.165'*/ (err, address) => {
 	if (err) {
 		fastify.log.error(err);
 		process.exit(1);

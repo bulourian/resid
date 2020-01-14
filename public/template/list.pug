@@ -12,23 +12,23 @@ div(class="container text-right")
         th(scope="col") تاریخ
         th(scope="col") حذف
     tbody(id="tbody")
-    each va, i in val
-      tr(style="text-align:center")
-        th(scope)= i+1
-        td= va.type
-        td= va.bid
-        td= va.name
-        td= va.reciept
-        td= va.payment
-        td(style="direction: ltr !important;")= va.date
-        td
-          a(href="/delete/" + va.id)
-            svg(version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-trashcan" aria-hidden="true")
-              path(fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z")
+    //- each va, i in val
+    //-   tr(style="text-align:center")
+    //-     th(scope)= i+1
+    //-     td= va.type
+    //-     td= va.bid
+    //-     td= va.name
+    //-     td= va.reciept
+    //-     td= va.payment
+    //-     td(style="direction: ltr !important;")= va.date
+    //-     td
+    //-       a(href="/delete/" + va.id)
+    //-         svg(version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-trashcan" aria-hidden="true")
+    //-           path(fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z")
 
 script.
   $(document).ready(() => {
-    fetch('http://sony:3000/json').then( res => {
+    fetch('http://localhost:3000/json').then( res => {
       return res.json();
     }).then( res => {
       console.log(res);
@@ -41,7 +41,7 @@ script.
         //- `;
         let tr = document.createElement('tr');
         tr.style.textAlign = "center";
-        let id = document.createElement('td');
+        let id = document.createElement('th');
         let type = document.createElement('td');
         let bid = document.createElement('td');
         let name = document.createElement('td');
@@ -58,9 +58,11 @@ script.
         date.appendChild(document.createTextNode(data.date));
         del.setAttribute('href', '/delete/' + data.id);
         del.innerHTML = `
+        <a href="/delete/${data.id}">
           <svg version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-trashcan" aria-hidden="true">
             <path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path>
           </svg>
+        </a>
         `;
         tr.appendChild(id);
         tr.appendChild(type);
