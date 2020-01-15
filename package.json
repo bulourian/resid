@@ -16,6 +16,7 @@
     "fastify-helmet": "^3.0.2",
     "fastify-session": "^3.2.0",
     "fastify-static": "^2.5.1",
+    "fastify-websocket": "^1.1.0",
     "md.bootstrappersiandatetimepicker": "^3.6.3",
     "point-of-view": "^3.7.0",
     "pug": "^2.0.4",

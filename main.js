@@ -9,6 +9,7 @@ fastify.register(require('fastify-helmet'));
 fastify.register(require('fastify-cors'));
 fastify.register(require('fastify-cookie'));
 fastify.register(require('fastify-formbody'));
+fastify.register(require('fastify-websocket'));
 fastify.register(require('fastify-static'), {root: path.join(process.cwd(), 'public')});
 fastify.register(require('fastify-session'), {
   secret: '44f5983a3709f736066b91cb34817e98c7761bb7055a1d3ca3620b7b727ca6fa51f7fd866c8f0d7c1633440ca1f2173e7007c2c706ed4f5d8c783552739f4e56',
@@ -73,16 +74,22 @@ fastify.get('/list', (req, res) => {
   });
 });
 
-fastify.get('/json', (req, res) => {
-  if (!req.session.auth) {
-    res.redirect('/login');
-    return;
-  }
+fastify.get('/json', { websocket: true }, (connection, req) => {
+  // if (!req.session.auth) {
+  //   res.redirect('/login');
+  //   return;
+  // }
 
-  list.list().then( data => {
-    res.code(200);
-    res.header('Content-Type', 'application/json; charset=utf-8');
-    res.send(data);
+  // list.list().then( data => {
+  //   res.code(200);
+  //   res.header('Content-Type', 'application/json; charset=utf-8');
+  //   res.send(data);
+  // });
+
+  connection.socket.on('message', msg => {
+    list.list().then( data => {
+      connection.socket.send(JSON.stringify(data));
+    });
   });
 });
 
@@ -128,7 +135,7 @@ fastify.get('/logout' , (req, res) => {
   }
 });
 
-fastify.listen(3000, /*'192.168.1.165'*/ (err, address) => {
+fastify.listen(3000, '192.168.1.165', (err, address) => {
 	if (err) {
 		fastify.log.error(err);
 		process.exit(1);

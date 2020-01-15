@@ -31,13 +31,21 @@ $(document).ready(function() {
     btnSabt.innerHTML = `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
       صبر کنید ...`;
     btnSabt.disabled = true;
-    fetch('http://localhost:3000/resid', {
+    fetch('http://sony:3000/resid', {
       method: 'POST',
       body: new URLSearchParams(new FormData(form))
     }).then( response => {
       btnSabt.innerHTML = 'ثبت';
       btnSabt.disabled = false;
       form.reset();
+      const socket = new WebSocket('ws://sony:3000/json');
+
+      socket.addEventListener('open', function (event) {
+        socket.send('json');
+      });
+      socket.addEventListener('message', function (e) {
+        console.log('Message from server ', JSON.parse(e.data));
+      });
     }).catch( err => {
       console.log(err);
     });
