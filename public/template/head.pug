@@ -21,6 +21,8 @@ body(style="direction: rtl")
       if auth
         ul(class="navbar-nav mr-auto")
           li(class="nav-item active")
+            a(class="nav-link" href="/#") #{user}
+          li(class="nav-item active")
             a(class="nav-link" href="/logout") خروج
       else
         ul(class="navbar-nav mr-auto")

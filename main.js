@@ -107,7 +107,7 @@ fastify.get('/login', (req, res) => {
 fastify.post('/user/login' , (req, res) => {
   user.login(req, res).then( (user) => {
     req.session.auth = true;
-    req.session.user = user[5];
+    req.session.user = user[7] + ' ' + user[8];
     req.session.uid = user[0];
     res.redirect('/');
   }).catch( () => {
@@ -130,7 +130,7 @@ fastify.get('/logout' , (req, res) => {
   }
 });
 
-fastify.listen(3000, /*'192.168.1.165',*/ (err, address) => {
+fastify.listen(3000, '192.168.1.165', (err, address) => {
 	if (err) {
 		fastify.log.error(err);
 		process.exit(1);

@@ -2,7 +2,7 @@ const db = require('./db').db;
 const util = require('./util');
 
 const list = (req, res) => {
-  return new Promise( (resolve, reject) => {
+  return new Promise( async (resolve, reject) => {
     db.query('SELECT * FROM resid', {
       id: Number,
       type: String,
@@ -11,14 +11,41 @@ const list = (req, res) => {
       reciept: String,
       payment: String,
       date: String,
-    }, (err, rows) => {
+      uid: String,
+    }, async (err, rows) => {
       if (err) {
-          console.error(err)
-          return;
+        console.error(err)
+        return;
       }
 
       let data = rows;
-      resolve(data)
+
+      db.query('SELECT id, name, lastname FROM user', {
+        id: Number,
+        name: String,
+        lastname: String,
+      },  async (err, ro) => {
+        if (err) {
+          console.error(err)
+          return;
+        }
+
+        let arr = [];
+
+        await data.map( async (i, ind) => {
+          // console.log(i)
+          ro.map( d => {
+            
+            if (d.id == i.uid) {
+              data[ind].uname = d.name;
+              data[ind].lastname = d.lastname;
+            }
+          })
+        });
+
+        console.log(data);
+        resolve(data);
+      });
     });
   });
 }

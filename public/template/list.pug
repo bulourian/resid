@@ -10,6 +10,7 @@ div(class="container text-right")
         th(scope="col") شماره قسط
         th(scope="col") مبلغ
         th(scope="col") تاریخ
+        th(scope="col") کاربر
         th(scope="col") حذف
     tbody(id="tbody")
     //- each va, i in val
@@ -28,19 +29,19 @@ div(class="container text-right")
 
 script.
   $(document).ready(() => {
-    const socket = new WebSocket('ws://localhost:8080/');
+    const socket = new WebSocket('ws://sony:8080/');
 
     // Connection opened
     socket.addEventListener('open', function (event) {
-        socket.send('json');
+      socket.send('json');
     });
 
     let el = document.querySelector('#tbody');
 
     // Listen for messages
     socket.addEventListener('message', function (e) {
-      console.log('Message from server ', JSON.parse(e.data));
       el.innerHTML = '';
+      console.log(e.data)
       JSON.parse(e.data).forEach( (data, i) => {
         let tr = document.createElement('tr');
         tr.style.textAlign = "center";
@@ -51,6 +52,7 @@ script.
         let reciept = document.createElement('td');
         let payment = document.createElement('td');
         let date = document.createElement('td');
+        let user = document.createElement('td');
         let del = document.createElement('td');
         id.appendChild(document.createTextNode(++i));
         type.appendChild(document.createTextNode(data.type));
@@ -59,6 +61,7 @@ script.
         reciept.appendChild(document.createTextNode(data.reciept));
         payment.appendChild(document.createTextNode(data.payment));
         date.appendChild(document.createTextNode(data.date));
+        user.appendChild(document.createTextNode(data.uname + ' ' + data.lastname));
         del.setAttribute('href', '/delete/' + data.id);
         del.innerHTML = `
         <a href="/delete/${data.id}">
@@ -74,6 +77,7 @@ script.
         tr.appendChild(reciept);
         tr.appendChild(payment);
         tr.appendChild(date);
+        tr.appendChild(user);
         tr.appendChild(del);
         el.appendChild(tr);
       });
