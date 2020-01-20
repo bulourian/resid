@@ -1,3 +1,5 @@
 include head.pug
-div(class="container")
-  h1 سلام #{user}
+div(class="container" style="direction: rtl; text-align: right")
+  h3 سلام #{user}
+  if !user
+    p برای نمایش یا وارد کردن لیست اقساط اول باید وارد حساب کاربری خود شوید.

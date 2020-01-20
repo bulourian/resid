@@ -66,7 +66,8 @@ fastify.get('/resid', (req, res) => {
     headerTitle: 'ثبت اقساط',
     name: 'Amin',
     user: req.session.user,
-    auth: req.session.auth
+    auth: req.session.auth,
+    page: 'resid'
   });
 });
 
@@ -83,7 +84,8 @@ fastify.get('/list', (req, res) => {
       name: 'Amin',
       user: req.session.user,
       auth: req.session.auth,
-      val: data
+      val: data,
+      page: 'list'
     });
   });
 });

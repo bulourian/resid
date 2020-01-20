@@ -13,10 +13,18 @@ body(style="direction: rtl")
   nav(class="navbar navbar-expand-md navbar-dark bg-dark")
     a(class="navbar-brand" href="/") رسید اقساط
     ul(class="navbar-nav mr-auto")
-      li(class="nav-item active")
-        a(class="nav-link" href="/resid") ثبت اقساط
-      li(class="nav-item")
-        a(class="nav-link" href="/list") لیست اقساط
+      if page == "resid"
+        li(class="nav-item active")
+          a(class="nav-link" href="/resid") ثبت اقساط
+      else
+        li(class="nav-item")
+          a(class="nav-link" href="/resid") ثبت اقساط
+      if page == "list"
+        li(class="nav-item active")
+          a(class="nav-link" href="/list") لیست اقساط
+      else
+        li(class="nav-item")
+          a(class="nav-link" href="/list") لیست اقساط
     div(class="collapse navbar-collapse" id="navbarCollapse")
       if auth
         ul(class="navbar-nav mr-auto")

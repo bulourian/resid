@@ -73,7 +73,7 @@ const addUser = (req, res) => {
         lastname
       });
 
-      res.send(drivedKey.toString('hex'))
+      res.redirect('/login');
     });
   }
 };

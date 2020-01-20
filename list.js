@@ -30,12 +30,8 @@ const list = (req, res) => {
           return;
         }
 
-        let arr = [];
-
         await data.map( async (i, ind) => {
-          // console.log(i)
           ro.map( d => {
-            
             if (d.id == i.uid) {
               data[ind].uname = d.name;
               data[ind].lastname = d.lastname;
@@ -43,7 +39,6 @@ const list = (req, res) => {
           })
         });
 
-        console.log(data);
         resolve(data);
       });
     });
